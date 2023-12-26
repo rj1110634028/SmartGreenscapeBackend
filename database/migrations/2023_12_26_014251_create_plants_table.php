@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('plants', function (Blueprint $table) {
             $table->id();
             $table->string('name', 20);
-            $table->decimal('temperature',8,4);
-            $table->decimal('humidity',8,4);
-            $table->decimal('soil_humidity',8,4);
+            $table->char('mac_address', 17);
+            $table->decimal('temperature', 8, 4);
+            $table->decimal('humidity', 8, 4);
+            $table->decimal('soil_humidity', 8, 4);
             $table->timestamps();
         });
     }

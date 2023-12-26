@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('data', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('plant_id')->constrained();
             $table->decimal('temperature',8,4);
             $table->decimal('humidity',8,4);
             $table->decimal('soil_humidity',8,4);
-            $table->timestamps();
+            $table->dateTime('time');
         });
     }
 
