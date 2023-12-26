@@ -9,7 +9,16 @@ class Plant extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'mac_address', 'temperature', 'humidity', 'soil_humidity'];
+    protected $fillable = [
+        'name',
+        'mac_address',
+        'min_temperature',
+        'min_humidity',
+        'min_soil_humidity',
+        'max_temperature',
+        'max_humidity',
+        'max_soil_humidity',
+    ];
 
     public function data()
     {

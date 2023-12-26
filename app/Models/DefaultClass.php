@@ -9,5 +9,15 @@ class DefaultClass extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'temperature', 'humidity', 'soil_humidity'];
+    public $timestamps = false;
+    
+    protected $fillable = [
+        'name',
+        'min_temperature',
+        'min_humidity',
+        'min_soil_humidity',
+        'max_temperature',
+        'max_humidity',
+        'max_soil_humidity',
+    ];
 }

@@ -14,9 +14,12 @@ return new class extends Migration
         Schema::create('default_classes', function (Blueprint $table) {
             $table->id();
             $table->string('name', 20);
-            $table->decimal('temperature', 8, 4);
-            $table->decimal('humidity', 8, 4);
-            $table->decimal('soil_humidity', 8, 4);
+            $table->decimal('min_temperature', 8, 4);
+            $table->decimal('min_humidity', 8, 4);
+            $table->decimal('min_soil_humidity', 8, 4);
+            $table->decimal('max_temperature', 8, 4);
+            $table->decimal('max_humidity', 8, 4);
+            $table->decimal('max_soil_humidity', 8, 4);
         });
     }
 

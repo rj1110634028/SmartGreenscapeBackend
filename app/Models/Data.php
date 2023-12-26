@@ -9,6 +9,8 @@ class Data extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+    
     protected $fillable = ['temperature', 'humidity', 'soil_humidity', 'time'];
 
     public function plant()
