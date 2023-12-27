@@ -11,7 +11,7 @@ class UpdatePlantRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class UpdatePlantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['Filled', 'string'],
+            'mac_address' => ['Filled', 'mac_address'],
+            'min_temperature' => ['Filled', 'numeric'],
+            'min_humidity' => ['Filled', 'numeric'],
+            'min_soil_humidity' => ['Filled', 'numeric'],
+            'max_temperature' => ['Filled', 'numeric'],
+            'max_humidity' => ['Filled', 'numeric'],
+            'max_soil_humidity' => ['Filled', 'numeric'],
         ];
     }
 }

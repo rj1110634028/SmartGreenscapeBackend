@@ -1,7 +1,10 @@
 <?php
 
+use App\Http\Controllers\DataController;
+use App\Http\Controllers\PlantController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\HttpKernel\DataCollector\DataCollector;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +17,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::apiResource('plant', PlantController::class)->only(['store']);
+
+Route::controller(DataController::class)->group(function () {
+    Route::get('data/{mac_address}', 'show');
 });

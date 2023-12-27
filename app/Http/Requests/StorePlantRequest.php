@@ -11,7 +11,7 @@ class StorePlantRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,14 @@ class StorePlantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string'],
+            'mac_address' => ['required', 'mac_address'],
+            'min_temperature' => ['required', 'numeric'],
+            'min_humidity' => ['required', 'numeric'],
+            'min_soil_humidity' => ['required', 'numeric'],
+            'max_temperature' => ['required', 'numeric'],
+            'max_humidity' => ['required', 'numeric'],
+            'max_soil_humidity' => ['required', 'numeric'],
         ];
     }
 }
