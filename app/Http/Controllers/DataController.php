@@ -27,9 +27,12 @@ class DataController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Data $data)
+    public function show($mac_address)
     {
-        //
+        $plant = Data::query()->whereHas('plant', function ($query) use ($mac_address) {
+            $query->where('mac_address', $mac_address);
+        })->orderBy('time', 'desc');
+        return response()->json($plant->get());
     }
 
     /**
