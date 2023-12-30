@@ -23,6 +23,6 @@ class Plant extends Model
 
     public function data()
     {
-        return $this->hasMany(Data::class, 'mac_address');
+        return $this->hasMany(Data::class, 'mac_address', 'mac_address');
     }
 }

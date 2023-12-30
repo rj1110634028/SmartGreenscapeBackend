@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Data;
 use App\Models\Plant;
 use Illuminate\Console\Command;
 use PhpMqtt\Client\Facades\MQTT;
@@ -37,7 +38,7 @@ class MqttListener extends Command
                 $data = json_decode($message, true);
                 $plant = Plant::where('mac_address', $data["mac_address"])->first();
                 if ($plant)
-                    $plant->data()->create($data);
+                    Data::create($data);
                 else
                     echo "mac_address not found\n";
             }, 0);
