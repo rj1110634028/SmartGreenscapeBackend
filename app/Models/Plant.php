@@ -10,7 +10,6 @@ class Plant extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
         'mac_address',
         'min_temperature',
         'min_humidity',
@@ -20,8 +19,10 @@ class Plant extends Model
         'max_soil_humidity',
     ];
 
+    protected $primaryKey = 'mac_address';
+
     public function data()
     {
-        return $this->hasMany(Data::class);
+        return $this->hasMany(Data::class, 'mac_address');
     }
 }

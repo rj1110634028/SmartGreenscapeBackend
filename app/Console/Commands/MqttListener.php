@@ -32,12 +32,14 @@ class MqttListener extends Command
             ini_set('memory_limit', '256M');
             echo sprintf("MQTT is connected\r\n");
             $mqtt->subscribe('plant/data', function (string $topic, string $message) {
-            echo sprintf("Received QoS level 0 message on topic [%s]: \r\n%s\r\n", $topic, $message);
-            // $message = '{"temperature":23,"humidity":33,"soil_humidity":33,"mac_address":"A0:B7:65:DE:0C:08","time":"2023-12-26 11:34:00"}';
-            $data = json_decode($message, true);
-            $plant = Plant::where('mac_address', $data["mac_address"])->first();
-            if ($plant)
-                $plant->data()->create($data);
+                echo sprintf("Received QoS level 0 message on topic [%s]: \r\n%s\r\n", $topic, $message);
+                // $message = '{"temperature":23,"humidity":33,"soil_humidity":33,"mac_address":"A0:B7:65:DE:0C:08","time":"2023-12-26 11:34:00"}';
+                $data = json_decode($message, true);
+                $plant = Plant::where('mac_address', $data["mac_address"])->first();
+                if ($plant)
+                    $plant->data()->create($data);
+                else
+                    echo "mac_address not found\n";
             }, 0);
 
             $mqtt->loop(true);

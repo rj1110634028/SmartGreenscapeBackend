@@ -22,7 +22,6 @@ class UpdatePlantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['Filled', 'string'],
             'mac_address' => ['Filled', 'mac_address'],
             'min_temperature' => ['Filled', 'numeric'],
             'min_humidity' => ['Filled', 'numeric'],

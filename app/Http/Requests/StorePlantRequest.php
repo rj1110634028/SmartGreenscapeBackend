@@ -22,7 +22,6 @@ class StorePlantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string'],
             'mac_address' => ['required', 'mac_address'],
             'min_temperature' => ['required', 'numeric'],
             'min_humidity' => ['required', 'numeric'],
