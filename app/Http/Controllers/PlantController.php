@@ -7,6 +7,10 @@ use App\Http\Requests\UpdatePlantRequest;
 use App\Models\Plant;
 use Spatie\FlareClient\Http\Exceptions\NotFound;
 
+
+/**
+ * @group Plant
+ */
 class PlantController extends Controller
 {
     /**
@@ -40,7 +44,9 @@ class PlantController extends Controller
      */
     public function update(UpdatePlantRequest $request, Plant $plant)
     {
-        //
+        $data = $request->validated();
+        $plant->update($data);
+        return response()->json($plant);
     }
 
     /**

@@ -17,8 +17,12 @@ use Symfony\Component\HttpKernel\DataCollector\DataCollector;
 |
 */
 
-Route::apiResource('plant', PlantController::class)->only(['store']);
+Route::controller(PlantController::class)->group(function () {
+    Route::post('plant', 'store');
+    Route::put('plant/{plant}', 'update');
+});
 
 Route::controller(DataController::class)->group(function () {
-    Route::get('data/{mac_address}', 'show');
+    Route::get('data/{mac_address}/now', 'showTimelyData');
+    Route::get('data/{mac_address}/24hr', 'showChart');
 });

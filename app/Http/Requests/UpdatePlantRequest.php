@@ -22,13 +22,12 @@ class UpdatePlantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'mac_address' => ['Filled', 'mac_address'],
-            'min_temperature' => ['Filled', 'numeric'],
-            'min_humidity' => ['Filled', 'numeric'],
-            'min_soil_humidity' => ['Filled', 'numeric'],
-            'max_temperature' => ['Filled', 'numeric'],
-            'max_humidity' => ['Filled', 'numeric'],
-            'max_soil_humidity' => ['Filled', 'numeric'],
+            'min_temperature' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
+            'min_humidity' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
+            'min_soil_humidity' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
+            'max_temperature' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
+            'max_humidity' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
+            'max_soil_humidity' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
         ];
     }
 }

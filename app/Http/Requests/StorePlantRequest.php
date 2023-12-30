@@ -23,12 +23,12 @@ class StorePlantRequest extends FormRequest
     {
         return [
             'mac_address' => ['required', 'mac_address'],
-            'min_temperature' => ['required', 'numeric'],
-            'min_humidity' => ['required', 'numeric'],
-            'min_soil_humidity' => ['required', 'numeric'],
-            'max_temperature' => ['required', 'numeric'],
-            'max_humidity' => ['required', 'numeric'],
-            'max_soil_humidity' => ['required', 'numeric'],
+            'min_temperature' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
+            'min_humidity' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
+            'min_soil_humidity' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
+            'max_temperature' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
+            'max_humidity' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
+            'max_soil_humidity' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
         ];
     }
 }

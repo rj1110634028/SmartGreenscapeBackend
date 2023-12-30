@@ -6,6 +6,9 @@ use App\Http\Requests\StoreDataRequest;
 use App\Http\Requests\UpdateDataRequest;
 use App\Models\Data;
 
+/**
+ * @group Data
+ */
 class DataController extends Controller
 {
     /**
