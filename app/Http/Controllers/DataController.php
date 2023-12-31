@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreDataRequest;
 use App\Http\Requests\UpdateDataRequest;
 use App\Models\Data;
+use Knuckles\Scribe\Attributes\UrlParam;
 
 /**
  * @group Data
@@ -28,9 +29,23 @@ class DataController extends Controller
     }
 
     /**
+     * Display the Timely resource.
+     */
+    #[UrlParam('mac_address')]
+    public function showTimelyData($mac_address)
+    {
+        $plant = Data::query()->whereHas('plant', function ($query) use ($mac_address) {
+            $query->where('mac_address', $mac_address);
+        })->orderBy('time', 'desc');
+        return response()->json($plant->first());
+    }
+
+
+    /**
      * Display the specified resource.
      */
-    public function show($mac_address)
+    #[UrlParam('mac_address')]
+    public function showChartData($mac_address)
     {
         $plant = Data::query()->whereHas('plant', function ($query) use ($mac_address) {
             $query->where('mac_address', $mac_address);
