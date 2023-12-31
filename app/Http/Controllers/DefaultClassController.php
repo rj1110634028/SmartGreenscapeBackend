@@ -6,6 +6,9 @@ use App\Http\Requests\StoreDefaultClassRequest;
 use App\Http\Requests\UpdateDefaultClassRequest;
 use App\Models\DefaultClass;
 
+/**
+ * @group DefaultClass
+ */
 class DefaultClassController extends Controller
 {
     /**
@@ -13,7 +16,7 @@ class DefaultClassController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(DefaultClass::all());
     }
 
     /**
