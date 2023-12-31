@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePlantRequest;
 use App\Http\Requests\UpdatePlantRequest;
 use App\Models\Plant;
-use Spatie\FlareClient\Http\Exceptions\NotFound;
+use Knuckles\Scribe\Attributes\UrlParam;
 
 
 /**
@@ -34,14 +34,16 @@ class PlantController extends Controller
     /**
      * Display the specified resource.
      */
+    #[UrlParam(name: 'mac_address', example: 'A0:B7:65:DE:0C:08')]
     public function show(Plant $plant)
     {
-        //
+        return response()->json($plant);
     }
 
     /**
      * Update the specified resource in storage.
      */
+    #[UrlParam(name: 'mac_address', example: 'A0:B7:65:DE:0C:08')]
     public function update(UpdatePlantRequest $request, Plant $plant)
     {
         $data = $request->validated();

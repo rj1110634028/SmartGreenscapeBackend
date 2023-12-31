@@ -21,6 +21,10 @@ class Plant extends Model
 
     protected $primaryKey = 'mac_address';
 
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
     public function data()
     {
         return $this->hasMany(Data::class, 'mac_address', 'mac_address');
