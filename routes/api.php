@@ -19,6 +19,7 @@ use Symfony\Component\HttpKernel\DataCollector\DataCollector;
 */
 
 Route::apiResource('plant', PlantController::class)->only('store', 'show', 'update');
+Route::post('plant/status',[PlantController::class,'getPlantStatus']);
 
 Route::controller(DataController::class)->group(function () {
     Route::get('plant/{mac_address}/data/timely', 'showTimelyData');
