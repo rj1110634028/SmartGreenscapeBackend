@@ -28,6 +28,7 @@ class UpdatePlantRequest extends FormRequest
             'max_temperature' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
             'max_humidity' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
             'max_soil_humidity' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
+            'is_want_remind' => ['required', 'boolean'],
         ];
     }
 }

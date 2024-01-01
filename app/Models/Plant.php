@@ -17,6 +17,7 @@ class Plant extends Model
         'max_temperature',
         'max_humidity',
         'max_soil_humidity',
+        'is_want_remind',
     ];
 
     protected $primaryKey = 'mac_address';

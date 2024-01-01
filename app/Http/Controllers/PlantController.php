@@ -92,6 +92,7 @@ class PlantController extends Controller
                     ->orWhere('d.soil_humidity', '>', DB::raw('p.max_soil_humidity'));
             })
             ->whereIn('d.mac_address', $data['mac_addresses'])
+            ->where('p.is_want_remind', true)
             ->get()->toArray();
         $res = [];
         foreach ($results as $key => $result) {
@@ -106,13 +107,13 @@ class PlantController extends Controller
                 array_push($res[$key]['messagges'], "當前濕度小於設定最小濕度");
             }
             if ($result->is_humidity_high) {
-                array_push($res[$key]['messagge'], "當前濕度大於設定最大濕度");
+                array_push($res[$key]['messagges'], "當前濕度大於設定最大濕度");
             }
             if ($result->is_soil_humidity_low) {
-                array_push($res[$key]['messagge'], "當前土壤濕度小於設定最小土壤濕度");
+                array_push($res[$key]['messagges'], "當前土壤濕度小於設定最小土壤濕度");
             }
             if ($result->is_soil_humidity_high) {
-                array_push($res[$key]['messagge'], "當前土壤濕度大於設定最大土壤濕度");
+                array_push($res[$key]['messagges'], "當前土壤濕度大於設定最大土壤濕度");
             }
         }
         return response()->json($res);

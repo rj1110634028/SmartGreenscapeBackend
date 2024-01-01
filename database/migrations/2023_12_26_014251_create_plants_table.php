@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('max_temperature', 8, 4);
             $table->decimal('max_humidity', 8, 4);
             $table->decimal('max_soil_humidity', 8, 4);
+            $table->boolean('is_want_remind')->default(false);
             $table->timestamps();
         });
     }
