@@ -185,4 +185,6 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'Line_notify_token' => env('LINE_NOTIFY_TOKEN'),
+
 ];

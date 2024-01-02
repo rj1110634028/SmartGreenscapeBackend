@@ -2,9 +2,12 @@
 
 namespace App\Console\Commands;
 
+use App\Events\NewDataPush;
 use App\Models\Data;
 use App\Models\Plant;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use PhpMqtt\Client\Facades\MQTT;
 
 class MqttListener extends Command
@@ -37,9 +40,42 @@ class MqttListener extends Command
                 // $message = '{"temperature":23,"humidity":33,"soil_humidity":33,"mac_address":"A0:B7:65:DE:0C:08","time":"2023-12-26 11:34:00"}';
                 $data = json_decode($message, true);
                 $plant = Plant::where('mac_address', $data["mac_address"])->first();
-                if ($plant)
-                    Data::create($data);
-                else
+                if ($plant) {
+                    $data = Data::create($data);
+                    $message = "";
+                    if ($data->temperature < $plant->min_temperature) {
+                        $message = $message . "當前溫度小於設定最小溫度\n";
+                    }
+                    if ($data->temperature > $plant->max_temperature) {
+                        $message = $message . "當前溫度大於設定最大溫度\n";
+                    }
+                    if ($data->humidity < $plant->min_humidity) {
+                        $message = $message . "當前濕度小於設定最小濕度\n";
+                    }
+                    if ($data->humidity > $plant->max_humidity) {
+                        $message = $message . "當前濕度大於設定最大濕度\n";
+                    }
+                    if ($data->soil_humidity < $plant->min_soil_humidity) {
+                        $message = $message . "當前土壤濕度小於設定最小土壤濕度\n";
+                    }
+                    if ($data->soil_humidity > $plant->max_soil_humidity) {
+                        $message = $message . "當前土壤濕度大於設定最大土壤濕度\n";
+                    }
+                    if ($message) {
+                        $accessToken = config('app.Line_notify_token');
+                        $responseData = Http::asForm()->withHeaders(
+                            [
+                                'Authorization' => "Bearer {$accessToken}"
+                            ]
+                        )->post(
+                            'https://notify-api.line.me/api/notify',
+                            [
+                                'message' => "\n" . $message
+                            ]
+                        )->json();
+                        Log::info($responseData);
+                    }
+                } else
                     echo "mac_address not found\n";
             }, 0);
 

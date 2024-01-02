@@ -22,12 +22,12 @@ class UpdatePlantRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'min_temperature' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
-            'min_humidity' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
-            'min_soil_humidity' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
-            'max_temperature' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
-            'max_humidity' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
-            'max_soil_humidity' => ['required', 'numeric', 'decimal:0,4', 'between:0,100'],
+            'min_temperature' => ['required', 'numeric', 'decimal:0,4', 'between:0,9999'],
+            'min_humidity' => ['required', 'numeric', 'decimal:0,4', 'between:0,9999'],
+            'min_soil_humidity' => ['required', 'numeric', 'decimal:0,4', 'between:0,9999'],
+            'max_temperature' => ['required', 'numeric', 'decimal:0,4', 'between:0,9999'],
+            'max_humidity' => ['required', 'numeric', 'decimal:0,4', 'between:0,9999'],
+            'max_soil_humidity' => ['required', 'numeric', 'decimal:0,4', 'between:0,9999'],
             'is_want_remind' => ['required', 'boolean'],
         ];
     }
